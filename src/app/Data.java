@@ -1,9 +1,36 @@
 package src.app;
 
-public class Data {
-    private int dia;
-    private int mes;
-    private int ano;
+public class Data implements Cloneable, Comparable<Data> {
+    private byte mes;
+    private byte dia;
+    private short ano;
+
+    public Data(short ano, byte mes, byte dia) throws Exception {
+        this.ano = ano;
+        this.mes = mes;
+        this.dia = dia;
+
+        if (isValide(this.mes, this.dia, this.ano))
+            throw new Exception("Data Invalida!");
+    }
+
+    public static boolean isBissexto(short ano) {
+        if (ano < 1583) // vigencia do Calendario Juliano
+            if (ano % 4 == 0)
+                return true;
+            else
+                return false;
+
+        // vigencia do Calendario Gregoriano
+
+        if (ano % 400 == 0)
+            return true;
+
+        if (ano % 4 == 0 && ano % 100 != 0)
+            return true;
+
+        return false;
+    }
 
     private static boolean isValide(byte mes, byte dia, short ano) {
         if (dia < 1 || dia > 31) {
@@ -90,6 +117,9 @@ public class Data {
         this.dia = modelo.dia;
         this.mes = modelo.mes;
         this.ano = modelo.ano;
+    }
+
+    public Data(byte b, byte c, short s) {
     }
 
     public Object clone() {

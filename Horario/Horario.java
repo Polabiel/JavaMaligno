@@ -1,7 +1,5 @@
 package Horario;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 public class Horario implements Cloneable, Comparable<Horario> {
 
     private byte hora;
