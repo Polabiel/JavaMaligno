@@ -1,39 +1,177 @@
 package src.app;
 
-public class Data {
+public class Data implements Cloneable, Comparable<Data> {
+    private byte dia, mes;
+    private short ano;
 
-    private int dia;
-    private int mes;
-    private int ano;
+    private static boolean isBissexto(short ano) {
+        if (ano < 1583) // vigencia do Calendario Juliano
+            if (ano % 4 == 0)
+                return true;
+            else
+                return false;
 
-    private static boolean isValide(int i, int j, int k) {
-        if (i < 1 || i > 31) {
-            return false;
-        }
-        if (j < 1 || j > 12) {
-            return false;
-        }
-        if (k < 0) {
-            return false;
-        }
-        return true;
-    }
+        // vigencia do Calendario Gregoriano
 
-    private static boolean isBissexto(int k) {
-        if (k % 4 == 0 && k % 100 != 0 && k % 400 == 0) {
+        if (ano % 400 == 0)
             return true;
-        }
+
+        if (ano % 4 == 0 && ano % 100 != 0)
+            return true;
+
         return false;
     }
 
-    public Data(int i, int j, int k) {
-        if (!isValide(i, j, k)) {
-            throw new IllegalArgumentException("Invalid date");
-        }
-        this.dia = i;
-        this.ano = j;
-        this.mes = k;
+    private static boolean isValida(byte dia, byte mes, short ano) {
+        if (ano < -45)
+            return false;
+        if (ano == 0)
+            return false;
+        if (ano == 1582 && mes == 10 && dia >= 5 && dia <= 14)
+            return false;
 
+        if (dia < 1 || dia > 31)
+            return false;
+        if (mes < 1 || mes > 12)
+            return false;
+
+        if (dia > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11))
+            return false;
+        if (dia > 29 && mes == 2)
+            return false;
+        if (dia > 28 && mes == 2 && !isBissexto(ano))
+            return false;
+
+        return true;
     }
 
+    public /* void */ Data(byte dia, byte mes, short ano) throws Exception {
+        if (!isValida(dia, mes, ano))
+            throw new Exception("data invalida");
+
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+    }
+
+    public void setDia(byte dia) throws Exception {
+        if (!isValida(dia, this.mes, this.ano))
+            throw new Exception("dia invalido");
+        this.dia = dia;
+    }
+
+    public void setMes(byte mes) throws Exception {
+        if (!isValida(this.dia, mes, this.ano))
+            throw new Exception("mes invalido");
+        this.mes = mes;
+    }
+
+    public void setAno(short ano) throws Exception {
+        if (!isValida(this.dia, this.mes, ano))
+            throw new Exception("ano invalido");
+        this.ano = ano;
+    }
+
+    public Data dataSeguinte(Data dataAnterior) throws Exception {
+        byte dia = dataAnterior.getDia();
+        byte mes = dataAnterior.getMes();
+
+        if (dia > 31 && mes > 12) {
+            dia = 1;
+            mes = 1;
+            ++ano;
+        }
+        return dataAnterior;
+    }
+
+    public byte getDia() {
+        return this.dia;
+    }
+
+    public byte getMes() {
+        return this.mes;
+    }
+
+    public short getAno() {
+        return this.ano;
+    }
+
+    @Override
+    public String toString() {
+        if (ano < 0)
+            return String.format("%02d/%02d/%04d a.C.", this.dia, this.mes, -this.ano);
+        return String.format("%02d/%02d/%04d d.C.", this.dia, this.mes, this.ano);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj.getClass() != this.getClass())
+            return false;
+
+        Data data = (Data) obj;
+
+        return this.dia == data.dia && this.mes == data.mes && this.ano == data.ano;
+    }
+
+    @Override
+    public int hashCode() {
+        int ret = 666;
+
+        // return ret = 7 * ret + new Byte(this.dia).hashCode();
+        ret = 7 * ret + Byte.valueOf(this.dia).hashCode();
+        ret = 7 * ret + Byte.valueOf(this.mes).hashCode();
+        ret = 7 * ret + Short.valueOf(this.ano).hashCode();
+        // if (this.email!=null) ret
+
+        if (ret < 0)
+            ret = -ret;
+        return ret;
+    }
+
+    // @Override
+    private Data(Data modelo) throws Exception {
+        if (modelo == null)
+            throw new Exception("data ausente");
+
+        this.dia = modelo.dia;
+        this.mes = modelo.mes;
+        this.ano = modelo.ano;
+    }
+
+    public Object clone() {
+        Data ret = null;
+        try {
+            ret = new Data(this);
+        } catch (Exception erro) {
+        }
+        return ret;
+    }
+
+    @Override
+    public int compareTo(Data o) {
+        if (this.ano < o.ano)
+            return -1;
+        if (this.ano > o.ano)
+            return 1;
+
+        if (this.mes < o.mes)
+            return -1;
+        if (this.mes > o.mes)
+            return 1;
+
+        if (this.dia < o.dia)
+            return -1;
+        if (this.dia > o.dia)
+            return 1;
+
+        return 0;
+    }
 }
