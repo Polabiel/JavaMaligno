@@ -1,0 +1,70 @@
+Links vídeos TP_Andre
+
+01) Regras de nomenclatura
+http://www.youtube.com/watch?v=rl6jO1Zwdj8 
+
+02) Tipos vs Classes Wrapper (parte 1)
+https://www.youtube.com/watch?v=qMtfUTvYssE 
+
+03) Tipos vs Classes Wrapper (parte 2)
+https://www.youtube.com/watch?v=LVXiV4W8Smg 
+
+04) Atributos e métodos static
+https://www.youtube.com/watch?v=hRORo5Gm2WE 
+
+05) Digitação de dados (pelo teclado)
+https://www.youtube.com/watch?v=D--BnYM3Ons 
+
+06) O Método toString
+https://www.youtube.com/watch?v=xtmyq3xEzSQ 
+
+07) O método equals (classe Data, parte 1)
+https://www.youtube.com/watch?v=UdIMAHNSB9Y 
+
+08) O método equals (classe Data, parte 2)
+https://www.youtube.com/watch?v=zko9mxINiGM 
+
+09) O método hashCode
+https://www.youtube.com/watch?v=Gtdxuw-sXEg 
+
+10) O método compareTo
+https://www.youtube.com/watch?v=EJFEPDINudQ 
+
+11) Os métodos clone e construtor de cópia
+https://www.youtube.com/watch?v=PAOAvpWWHF0 
+
+12) Reflect para chamar clone de objetos de classes que são parâmetros de classes genéricas
+https://www.youtube.com/watch?v=HPs1t9haSCs 
+
+13) Herança, javadoc e regex
+https://www.youtube.com/watch?v=X5o1SE9xDBI 
+
+14) Interfaces
+https://www.youtube.com/watch?v=sFvTSUA1ubE 
+
+15) Classes abstratas e GUI
+https://www.youtube.com/watch?v=UYKLm7Q8o1Y 
+
+16) Acesso a BDs em programas feitos em Java (parte 1)
+https://www.youtube.com/watch?v=U_EQeV1nBrs 
+
+17) Acesso a BDs em programas feitos em Java (parte 2)
+https://www.youtube.com/watch?v=VdVtuZg8OVw 
+
+18) Sockets
+https://www.youtube.com/watch?v=_75dFL3qYb8 
+
+19) Threads sem compartilhamento de ED
+https://www.youtube.com/watch?v=A2aReBezB9o 
+
+20) Threads compartilhando ED
+https://www.youtube.com/watch?v=GQOz9Qp4D9U 
+
+21) Threads compartilhando ED com limites
+https://www.youtube.com/watch?v=21kOySn5fws 
+
+22) Preparação para a aula sobre sincronismo
+https://www.youtube.com/watch?v=wsGn_tskYb8 
+
+23) Sincronismo de threads
+https://www.youtube.com/watch?v=Sz54BOtXMqY

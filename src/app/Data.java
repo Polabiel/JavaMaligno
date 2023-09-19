@@ -1,99 +1,45 @@
 package src.app;
 
-public class Data implements Cloneable, Comparable<Data> {
-    private byte dia, mes;
-    private short ano;
+public class Data {
+    private int dia;
+    private int mes;
+    private int ano;
 
-    private static boolean isBissexto(short ano) {
-        if (ano < 1583) // vigencia do Calendario Juliano
-            if (ano % 4 == 0)
-                return true;
-            else
-                return false;
-
-        // vigencia do Calendario Gregoriano
-
-        if (ano % 400 == 0)
-            return true;
-
-        if (ano % 4 == 0 && ano % 100 != 0)
-            return true;
-
-        return false;
-    }
-
-    private static boolean isValida(byte dia, byte mes, short ano) {
-        if (ano < -45)
+    private static boolean isValide(byte mes, byte dia, short ano) {
+        if (dia < 1 || dia > 31) {
             return false;
-        if (ano == 0)
+        }
+        if (mes < 1 || mes > 12) {
             return false;
-        if (ano == 1582 && mes == 10 && dia >= 5 && dia <= 14)
+        }
+        if (ano < 0) {
             return false;
-
-        if (dia < 1 || dia > 31)
-            return false;
-        if (mes < 1 || mes > 12)
-            return false;
-
-        if (dia > 30 && (mes == 4 || mes == 6 || mes == 9 || mes == 11))
-            return false;
-        if (dia > 29 && mes == 2)
-            return false;
-        if (dia > 28 && mes == 2 && !isBissexto(ano))
-            return false;
-
+        }
         return true;
     }
 
-    public /* void */ Data(byte dia, byte mes, short ano) throws Exception {
-        if (!isValida(dia, mes, ano))
-            throw new Exception("data invalida");
+    public int getDia() {
+        return dia;
+    }
 
+    public int getMes() {
+        return mes;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setDia(byte dia) {
         this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
     }
 
-    public void setDia(byte dia) throws Exception {
-        if (!isValida(dia, this.mes, this.ano))
-            throw new Exception("dia invalido");
-        this.dia = dia;
-    }
-
-    public void setMes(byte mes) throws Exception {
-        if (!isValida(this.dia, mes, this.ano))
-            throw new Exception("mes invalido");
+    public void setMes(byte mes) {
         this.mes = mes;
     }
 
-    public void setAno(short ano) throws Exception {
-        if (!isValida(this.dia, this.mes, ano))
-            throw new Exception("ano invalido");
+    public void setAno(short ano) {
         this.ano = ano;
-    }
-
-    public Data dataSeguinte(Data dataAnterior) throws Exception {
-        byte dia = dataAnterior.getDia();
-        byte mes = dataAnterior.getMes();
-
-        if (dia > 31 && mes > 12) {
-            dia = 1;
-            mes = 1;
-            ++ano;
-        }
-        return dataAnterior;
-    }
-
-    public byte getDia() {
-        return this.dia;
-    }
-
-    public byte getMes() {
-        return this.mes;
-    }
-
-    public short getAno() {
-        return this.ano;
     }
 
     @Override
@@ -174,4 +120,5 @@ public class Data implements Cloneable, Comparable<Data> {
 
         return 0;
     }
+
 }
