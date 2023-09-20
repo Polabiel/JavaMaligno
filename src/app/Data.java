@@ -110,13 +110,13 @@ public class Data implements Cloneable, Comparable<Data> {
     }
 
     // @Override
-    private Data(Data modelo) throws Exception {
-        if (modelo == null)
+    private Data(Data Object) throws Exception {
+        if (Object == null)
             throw new Exception("data ausente");
 
-        this.dia = modelo.dia;
-        this.mes = modelo.mes;
-        this.ano = modelo.ano;
+        this.dia = Object.dia;
+        this.mes = Object.mes;
+        this.ano = Object.ano;
     }
 
     public Data(byte b, byte c, short s) {

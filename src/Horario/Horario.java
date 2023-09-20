@@ -1,4 +1,4 @@
-package Horario;
+package src.Horario;
 
 public class Horario implements Cloneable, Comparable<Horario> {
 
